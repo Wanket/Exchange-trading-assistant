@@ -1,0 +1,65 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "d9c1e6833a518b5abdf0248941c5f0f4",
+    "entities": [
+      {
+        "tableName": "Favorite",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`codeName` INTEGER NOT NULL, `type` INTEGER NOT NULL, `useNotifications` INTEGER NOT NULL, `upperBound` REAL NOT NULL, `lowerBound` REAL NOT NULL, `startLookFrom` INTEGER NOT NULL, PRIMARY KEY(`codeName`, `type`))",
+        "fields": [
+          {
+            "fieldPath": "codeName",
+            "columnName": "codeName",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "useNotifications",
+            "columnName": "useNotifications",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "upperBound",
+            "columnName": "upperBound",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lowerBound",
+            "columnName": "lowerBound",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startLookFrom",
+            "columnName": "startLookFrom",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "codeName",
+            "type"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd9c1e6833a518b5abdf0248941c5f0f4')"
+    ]
+  }
+}

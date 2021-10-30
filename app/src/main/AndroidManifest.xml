@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.exchange_trading_assistant">
+
+    <application
+        android:name="ru.wanket.exchange_trading_assistant.Application"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.NoTitleBar"
+        android:fullBackupContent="@xml/backup_descriptor">
+        <activity android:name="ru.wanket.exchange_trading_assistant.ui.login.LoginActivity"
+            android:exported="true"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ru.wanket.exchange_trading_assistant.ui.favorites.FavoritesActivity"
+            android:label="@string/title_activity_favorites">
+        </activity>
+        <activity
+            android:name="ru.wanket.exchange_trading_assistant.ui.search.SearchActivity"
+            android:theme="@android:style/Theme.Material.Light"
+            android:label="Search" />
+        <activity
+            android:name="ru.wanket.exchange_trading_assistant.ui.favorite_settings.FavoriteSettingsActivity" />
+        <activity
+            android:name="ru.wanket.exchange_trading_assistant.ui.rate_info.RateInfoActivity" />
+    </application>
+</manifest>
