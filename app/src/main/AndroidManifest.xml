@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.exchange_trading_assistant">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="ru.wanket.exchange_trading_assistant.Application"
         android:allowBackup="true"

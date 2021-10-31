@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import ru.wanket.exchange_trading_assistant.ui.theme.ExchangeTradingAssistantTheme
 import ru.wanket.exchange_trading_assistant.ui.widgets.EndArrangementRow
-import ru.wanket.exchange_trading_assistant.ui.widgets.RateView
+import ru.wanket.exchange_trading_assistant.ui.widgets.RateBaseInfoView
 import ru.wanket.exchange_trading_assistant.ui.widgets.TitleBar
 
 @Composable
@@ -34,7 +34,7 @@ fun Activity.Ui(viewModel: FavoritesViewModel) {
                             verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier.clickable { viewModel.onRateClicked(it) }
                         ) {
-                            RateView(it)
+                            RateBaseInfoView(it)
 
                             EndArrangementRow {
                                 IconButton(onClick = { viewModel.onEditClicked(it) }) {

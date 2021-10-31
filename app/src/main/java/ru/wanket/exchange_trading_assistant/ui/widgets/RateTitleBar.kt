@@ -11,7 +11,7 @@ fun RateTitleBar(rateBaseInfo: RateBaseInfo, content: @Composable (PaddingValues
     Scaffold(
         topBar = {
             TopAppBar {
-                RateView(rateBaseInfo)
+                RateBaseInfoView(rateBaseInfo)
             }
         },
         content = content

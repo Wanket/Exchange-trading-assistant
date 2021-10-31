@@ -17,7 +17,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import ru.wanket.exchange_trading_assistant.ui.theme.ExchangeTradingAssistantTheme
-import ru.wanket.exchange_trading_assistant.ui.widgets.RateView
+import ru.wanket.exchange_trading_assistant.ui.widgets.RateBaseInfoView
 
 @Composable
 fun Ui(viewModel: SearchViewModel) {
@@ -54,9 +54,11 @@ fun Ui(viewModel: SearchViewModel) {
                 items(viewModel.foundedList) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.clickable { viewModel.onRateClicked(it) }
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { viewModel.onRateClicked(it) }
                     ) {
-                        RateView(it)
+                        RateBaseInfoView(it)
                     }
                 }
             }

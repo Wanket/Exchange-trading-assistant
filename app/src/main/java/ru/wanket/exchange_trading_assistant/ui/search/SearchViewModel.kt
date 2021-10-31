@@ -4,20 +4,45 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.launch
 import ru.wanket.exchange_trading_assistant.entity.RateBaseInfo
+import ru.wanket.exchange_trading_assistant.repository.SearchRepository
+import javax.inject.Inject
 
-class SearchViewModel : ViewModel() {
-    var foundedList = mutableStateListOf<RateBaseInfo>()
-        private set
-
+@HiltViewModel
+class SearchViewModel @Inject constructor(
+    private val searchRepository: SearchRepository
+) : ViewModel() {
     var searchField by mutableStateOf("")
 
-    fun onRateClicked(rateBaseInfo: RateBaseInfo) {
+    var foundedList = mutableStateListOf<RateBaseInfo>()
 
+    private val searchChannel = Channel<String>(Channel.CONFLATED)
+
+    init {
+        viewModelScope.launch {
+            while (true) {
+                val infos =
+                    searchRepository.getRateBaseInfos(viewModelScope, searchChannel.receive())
+
+                foundedList.apply {
+                    clear()
+                    addAll(infos)
+                }
+            }
+        }
     }
 
-    fun onSearchFieldChanged(search: String) {
+    var onRateClicked: (rateBaseInfo: RateBaseInfo) -> Unit = {}
 
+    fun onSearchFieldChanged(search: String) {
+        if (search.isNotEmpty()) {
+            viewModelScope.launch { searchChannel.send(search) }
+        }
     }
 }

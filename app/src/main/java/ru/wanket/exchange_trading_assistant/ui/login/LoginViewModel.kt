@@ -4,30 +4,30 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import ru.wanket.exchange_trading_assistant.model.LoginModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import ru.wanket.exchange_trading_assistant.entity.Settings
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val model: LoginModel) : ViewModel() {
-    val isLogin = model.isPinCodeSetup
+class LoginViewModel @Inject constructor(private val settings: Settings) : ViewModel() {
+    val isLogin = settings.pinCode != null
 
     var pinCode by mutableStateOf("")
 
     var isPinCodeWrong by mutableStateOf(false)
 
-    var onLoginSuccess by mutableStateOf({})
+    var onLoginSuccess = {}
 
     fun onLogin() {
         if (!isLogin) {
-            model.createPinCode(pinCode.toInt())
+            settings.pinCode = pinCode.toInt()
 
             onLoginSuccess()
 
             return
         }
 
-        if (!model.checkPinCode(pinCode.toInt())) {
+        if (settings.pinCode != pinCode.toInt()) {
             isPinCodeWrong = true
 
             return

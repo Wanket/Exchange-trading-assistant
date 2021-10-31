@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentActivity
 import dagger.hilt.android.AndroidEntryPoint
-import ru.wanket.exchange_trading_assistant.ui.favorite_settings.FavoriteSettingsActivity
+import ru.wanket.exchange_trading_assistant.ui.favorites.FavoritesActivity
 
 @AndroidEntryPoint
 class LoginActivity : FragmentActivity() {
@@ -20,5 +20,5 @@ class LoginActivity : FragmentActivity() {
         setContent { Ui(viewModel) }
     }
 
-    private fun onLoginSuccess() = startActivity(Intent(this, FavoriteSettingsActivity::class.java))
+    private fun onLoginSuccess() = startActivity(Intent(this, FavoritesActivity::class.java))
 }
