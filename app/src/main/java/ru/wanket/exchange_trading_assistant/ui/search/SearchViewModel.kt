@@ -11,11 +11,13 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
 import ru.wanket.exchange_trading_assistant.entity.data.RateBaseInfo
 import ru.wanket.exchange_trading_assistant.repository.SearchRepository
+import ru.wanket.exchange_trading_assistant.ui.Navigator
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val searchRepository: SearchRepository
+    private val searchRepository: SearchRepository,
+    private val navigator: Navigator
 ) : ViewModel() {
     var searchField by mutableStateOf("")
 
@@ -26,8 +28,6 @@ class SearchViewModel @Inject constructor(
     init {
         updateInfosLoop()
     }
-
-    var onRateClicked: (rateBaseInfo: RateBaseInfo) -> Unit = {}
 
     fun onSearchFieldChanged(search: String) {
         if (search.isNotEmpty()) {
@@ -47,4 +47,6 @@ class SearchViewModel @Inject constructor(
             }
         }
     }
+
+    fun onRateClicked(rateBaseInfo: RateBaseInfo) = navigator.navigateRateInfo(rateBaseInfo)
 }

@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import ru.wanket.exchange_trading_assistant.ui.Navigator
 import ru.wanket.exchange_trading_assistant.ui.theme.ExchangeTradingAssistantTheme
 import ru.wanket.exchange_trading_assistant.ui.widgets.EndArrangementRow
 import ru.wanket.exchange_trading_assistant.ui.widgets.RateBaseInfoView
@@ -21,7 +22,7 @@ import ru.wanket.exchange_trading_assistant.ui.widgets.TitleBar
 @Composable
 fun Activity.Ui(viewModel: FavoritesViewModel) {
     ExchangeTradingAssistantTheme {
-        TitleBar {
+        TitleBar(Navigator(this)) {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()

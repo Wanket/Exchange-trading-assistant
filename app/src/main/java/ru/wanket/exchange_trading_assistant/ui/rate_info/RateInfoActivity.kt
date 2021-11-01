@@ -1,14 +1,13 @@
 package ru.wanket.exchange_trading_assistant.ui.rate_info
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import ru.wanket.exchange_trading_assistant.ui.getRate
+import ru.wanket.exchange_trading_assistant.ui.RateBaseInfoActivity
 
 @AndroidEntryPoint
-class RateInfoActivity : ComponentActivity() {
+class RateInfoActivity : RateBaseInfoActivity() {
     private val viewModel by viewModels<RateInfoViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
