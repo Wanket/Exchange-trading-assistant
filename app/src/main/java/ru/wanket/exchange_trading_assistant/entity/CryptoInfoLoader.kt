@@ -25,7 +25,7 @@ class CryptoInfoLoader(context: Context) {
         val name: String
     )
 
-    val infos = Json.decodeFromStream<CryptoInfos>(context.resources.openRawResource(R.raw.cryptos))
+    val baseInfos = Json.decodeFromStream<CryptoInfos>(context.resources.openRawResource(R.raw.cryptos))
 }
 
 @Module

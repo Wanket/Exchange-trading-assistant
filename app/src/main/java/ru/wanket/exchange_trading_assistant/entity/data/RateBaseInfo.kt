@@ -1,4 +1,4 @@
-package ru.wanket.exchange_trading_assistant.entity
+package ru.wanket.exchange_trading_assistant.entity.data
 
 class RateBaseInfo(
     val codeName: String,

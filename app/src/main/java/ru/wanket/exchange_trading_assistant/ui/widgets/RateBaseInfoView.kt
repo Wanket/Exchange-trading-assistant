@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import ru.wanket.exchange_trading_assistant.entity.RateBaseInfo
+import ru.wanket.exchange_trading_assistant.entity.data.RateBaseInfo
 
 @Composable
 fun RateBaseInfoView(rateBaseInfo: RateBaseInfo) {

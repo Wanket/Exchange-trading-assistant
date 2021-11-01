@@ -9,7 +9,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonConfiguration
 import okhttp3.MediaType
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -29,7 +28,7 @@ class AlphaVantageClient(private val apiKey: String) {
 
     suspend fun rateCompany(companyName: String) = client.rateCompany(companyName, apiKey)
 
-    suspend fun rateCrypto(companyName: String) = client.rateCrypto(companyName, apiKey)
+    suspend fun rateCrypto(cryptoName: String) = client.rateCrypto(cryptoName, apiKey)
 }
 
 @Module

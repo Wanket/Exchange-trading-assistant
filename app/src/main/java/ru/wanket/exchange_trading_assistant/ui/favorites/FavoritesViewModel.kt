@@ -2,7 +2,7 @@ package ru.wanket.exchange_trading_assistant.ui.favorites
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
-import ru.wanket.exchange_trading_assistant.entity.RateBaseInfo
+import ru.wanket.exchange_trading_assistant.entity.data.RateBaseInfo
 
 class FavoritesViewModel : ViewModel() {
     val favorites = mutableStateListOf<RateBaseInfo>()
@@ -12,10 +12,6 @@ class FavoritesViewModel : ViewModel() {
     }
 
     fun onRateClicked(rateBaseInfo: RateBaseInfo) {
-
-    }
-
-    fun onDeleteClicked(rateBaseInfo: RateBaseInfo) {
 
     }
 }

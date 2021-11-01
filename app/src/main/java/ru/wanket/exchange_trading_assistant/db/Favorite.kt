@@ -1,14 +1,13 @@
 package ru.wanket.exchange_trading_assistant.db
 
 import androidx.room.*
-import ru.wanket.exchange_trading_assistant.entity.RateType
-import java.time.LocalDateTime
-import java.time.OffsetDateTime
+import ru.wanket.exchange_trading_assistant.entity.data.RateType
+import java.time.LocalDate
 
 @Entity(primaryKeys = ["codeName", "type"])
-@TypeConverters(FavoriteConverter::class, RateTypeConverter::class)
+@TypeConverters(FavoriteConverter::class)
 class Favorite(
-    val codeName: Int,
+    val codeName: String,
 
     val type: RateType,
 
@@ -22,7 +21,7 @@ class Favorite(
     val lowerBound: Double,
 
     @ColumnInfo
-    val startLookFrom: LocalDateTime,
+    val startLookFrom: LocalDate,
 )
 
 @Dao
@@ -30,30 +29,23 @@ interface FavoriteDao {
     @Insert
     suspend fun insert(favorite: Favorite)
 
-    @Delete
-    suspend fun delete(favorite: Favorite)
+    @Query("DELETE FROM Favorite WHERE codeName = :codeName and type = :type")
+    suspend fun deleteById(codeName: String, type: RateType)
 
     @Update
     suspend fun update(favorite: Favorite)
 
     @Query("SELECT * FROM Favorite")
     suspend fun getAllFavorites(): List<Favorite>
+
+    @Query("SELECT EXISTS(SELECT * FROM Favorite WHERE codeName = :codeName and type = :type)")
+    suspend fun exist(codeName: String, type: RateType): Boolean
 }
 
 class FavoriteConverter {
     @TypeConverter
-    fun dateTimeToTimestamp(dateTime: LocalDateTime) =
-        dateTime.toEpochSecond(OffsetDateTime.now().offset)
+    fun dateTimeToTimestamp(date: LocalDate) = date.toEpochDay()
 
     @TypeConverter
-    fun dateTimeFromTimeStamp(timestamp: Long): LocalDateTime =
-        LocalDateTime.ofEpochSecond(timestamp, 0, OffsetDateTime.now().offset)
-}
-
-class RateTypeConverter {
-    @TypeConverter
-    fun rateToInt(type: RateType) = type.ordinal
-
-    @TypeConverter
-    fun rateAtOrdinal(ordinal: Int) = RateType.values()[ordinal]
+    fun dateTimeFromTimeStamp(epochDay: Long): LocalDate = LocalDate.ofEpochDay(epochDay)
 }

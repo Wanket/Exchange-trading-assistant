@@ -1,4 +1,4 @@
-package ru.wanket.exchange_trading_assistant.network
+package ru.wanket.exchange_trading_assistant.network.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

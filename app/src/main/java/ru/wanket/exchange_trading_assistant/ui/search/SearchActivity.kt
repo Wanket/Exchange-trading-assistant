@@ -6,7 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import ru.wanket.exchange_trading_assistant.entity.RateBaseInfo
+import ru.wanket.exchange_trading_assistant.entity.data.RateBaseInfo
+import ru.wanket.exchange_trading_assistant.ui.putRate
 import ru.wanket.exchange_trading_assistant.ui.rate_info.RateInfoActivity
 
 @AndroidEntryPoint
@@ -21,10 +22,7 @@ class SearchActivity : ComponentActivity() {
         setContent { Ui(viewModel) }
     }
 
-    private fun onRateClicked(rateBaseInfo: RateBaseInfo) {
-        startActivity(Intent(this, RateInfoActivity::class.java).apply {
-            putExtra(RateInfoActivity.RATE_ID, rateBaseInfo.codeName)
-            putExtra(RateInfoActivity.RATE_TYPE, rateBaseInfo.type.ordinal)
-        })
-    }
+    private fun onRateClicked(rateBaseInfo: RateBaseInfo) = startActivity(
+        Intent(this, RateInfoActivity::class.java).apply { putRate(rateBaseInfo) }
+    )
 }

@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,10 +38,6 @@ fun Activity.Ui(viewModel: FavoritesViewModel) {
                             EndArrangementRow {
                                 IconButton(onClick = { viewModel.onEditClicked(it) }) {
                                     Icon(Icons.Default.Edit, null)
-                                }
-
-                                IconButton(onClick = { viewModel.onDeleteClicked(it) }) {
-                                    Icon(Icons.Default.Delete, null)
                                 }
                             }
                         }
