@@ -38,5 +38,5 @@ class LoginViewModel @Inject constructor(
         onLoginSuccess()
     }
 
-    private fun onLoginSuccess() = navigator.navigateFavorite()
+    private fun onLoginSuccess() = navigator.navigateFavorites()
 }

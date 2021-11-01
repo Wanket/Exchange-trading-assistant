@@ -1,5 +1,6 @@
 package ru.wanket.exchange_trading_assistant.repository
 
+import kotlinx.coroutines.flow.map
 import ru.wanket.exchange_trading_assistant.db.DataBase
 import ru.wanket.exchange_trading_assistant.db.Favorite
 import ru.wanket.exchange_trading_assistant.entity.data.RateBaseInfo
@@ -21,5 +22,9 @@ class FavoritesRepository @Inject constructor(dataBase: DataBase) {
 
     suspend fun isFavorite(rateBaseInfo: RateBaseInfo) = rateBaseInfo.run {
         favoriteDao.exist(codeName, type)
+    }
+
+    fun getFavoriteRates() = favoriteDao.getAllFavorites().map {
+        it.map { favorite -> RateBaseInfo(favorite.codeName, favorite.type) }
     }
 }

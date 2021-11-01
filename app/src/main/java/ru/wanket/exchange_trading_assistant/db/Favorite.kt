@@ -1,6 +1,7 @@
 package ru.wanket.exchange_trading_assistant.db
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 import ru.wanket.exchange_trading_assistant.entity.data.RateType
 import java.time.LocalDate
 
@@ -36,7 +37,7 @@ interface FavoriteDao {
     suspend fun update(favorite: Favorite)
 
     @Query("SELECT * FROM Favorite")
-    suspend fun getAllFavorites(): List<Favorite>
+    fun getAllFavorites(): Flow<List<Favorite>>
 
     @Query("SELECT EXISTS(SELECT * FROM Favorite WHERE codeName = :codeName and type = :type)")
     suspend fun exist(codeName: String, type: RateType): Boolean
