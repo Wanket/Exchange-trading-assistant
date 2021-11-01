@@ -1,4 +1,4 @@
-package ru.wanket.exchange_trading_assistant.ui.favorites
+package ru.wanket.exchange_trading_assistant.view_models
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ru.wanket.exchange_trading_assistant.entity.data.RateBaseInfo
 import ru.wanket.exchange_trading_assistant.repository.FavoritesRepository
-import ru.wanket.exchange_trading_assistant.ui.Navigator
+import ru.wanket.exchange_trading_assistant.Navigator
 import javax.inject.Inject
 
 @HiltViewModel

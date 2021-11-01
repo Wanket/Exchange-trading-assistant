@@ -1,4 +1,4 @@
-package ru.wanket.exchange_trading_assistant.ui
+package ru.wanket.exchange_trading_assistant
 
 import android.app.Activity
 import android.content.Context
@@ -55,3 +55,4 @@ class Navigator @Inject constructor(@ApplicationContext private val context: Con
             }
         )
 }
+

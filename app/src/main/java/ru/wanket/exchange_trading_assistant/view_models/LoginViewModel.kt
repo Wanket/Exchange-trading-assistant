@@ -1,4 +1,4 @@
-package ru.wanket.exchange_trading_assistant.ui.login
+package ru.wanket.exchange_trading_assistant.view_models
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.wanket.exchange_trading_assistant.entity.Settings
-import ru.wanket.exchange_trading_assistant.ui.Navigator
+import ru.wanket.exchange_trading_assistant.Navigator
 import javax.inject.Inject
 
 @HiltViewModel

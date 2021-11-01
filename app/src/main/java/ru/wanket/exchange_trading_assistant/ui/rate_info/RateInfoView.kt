@@ -24,6 +24,8 @@ import ru.wanket.exchange_trading_assistant.entity.data.Company
 import ru.wanket.exchange_trading_assistant.entity.data.toBaseInfo
 import ru.wanket.exchange_trading_assistant.ui.theme.ExchangeTradingAssistantTheme
 import ru.wanket.exchange_trading_assistant.ui.widgets.*
+import ru.wanket.exchange_trading_assistant.view_models.History
+import ru.wanket.exchange_trading_assistant.view_models.RateInfoViewModel
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 

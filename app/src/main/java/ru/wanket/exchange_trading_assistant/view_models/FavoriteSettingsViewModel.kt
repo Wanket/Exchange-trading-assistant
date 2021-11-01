@@ -1,4 +1,4 @@
-package ru.wanket.exchange_trading_assistant.ui.favorite_settings
+package ru.wanket.exchange_trading_assistant.view_models
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

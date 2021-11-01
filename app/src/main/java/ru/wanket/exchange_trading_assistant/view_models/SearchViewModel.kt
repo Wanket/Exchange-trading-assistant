@@ -1,4 +1,4 @@
-package ru.wanket.exchange_trading_assistant.ui.search
+package ru.wanket.exchange_trading_assistant.view_models
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -9,9 +9,9 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
+import ru.wanket.exchange_trading_assistant.Navigator
 import ru.wanket.exchange_trading_assistant.entity.data.RateBaseInfo
 import ru.wanket.exchange_trading_assistant.repository.SearchRepository
-import ru.wanket.exchange_trading_assistant.ui.Navigator
 import javax.inject.Inject
 
 @HiltViewModel

@@ -7,7 +7,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import ru.wanket.exchange_trading_assistant.ui.Navigator
+import ru.wanket.exchange_trading_assistant.Navigator
 
 @Composable
 fun Activity.TitleBar(navigator: Navigator, content: @Composable (PaddingValues) -> Unit) =

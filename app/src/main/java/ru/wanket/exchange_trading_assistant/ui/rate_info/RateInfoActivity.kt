@@ -4,7 +4,8 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import ru.wanket.exchange_trading_assistant.ui.RateBaseInfoActivity
+import ru.wanket.exchange_trading_assistant.RateBaseInfoActivity
+import ru.wanket.exchange_trading_assistant.view_models.RateInfoViewModel
 
 @AndroidEntryPoint
 class RateInfoActivity : RateBaseInfoActivity() {

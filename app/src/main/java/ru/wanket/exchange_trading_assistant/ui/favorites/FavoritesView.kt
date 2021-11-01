@@ -15,12 +15,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.flow.distinctUntilChanged
-import ru.wanket.exchange_trading_assistant.ui.Navigator
+import ru.wanket.exchange_trading_assistant.Navigator
 import ru.wanket.exchange_trading_assistant.ui.theme.ExchangeTradingAssistantTheme
 import ru.wanket.exchange_trading_assistant.ui.widgets.EndArrangementRow
 import ru.wanket.exchange_trading_assistant.ui.widgets.RateBaseInfoView
 import ru.wanket.exchange_trading_assistant.ui.widgets.TitleBar
+import ru.wanket.exchange_trading_assistant.view_models.FavoritesViewModel
 
 @Composable
 fun Activity.Ui(viewModel: FavoritesViewModel) {
