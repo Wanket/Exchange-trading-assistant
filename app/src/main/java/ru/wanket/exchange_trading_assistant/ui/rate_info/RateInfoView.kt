@@ -99,8 +99,8 @@ fun Ui(viewModel: RateInfoViewModel) {
 
                 if (viewModel.history.isNotEmpty()) {
                     val steps = viewModel.history.run {
-                        first().first.toEpochDay() - last().first.toEpochDay()
-                    }.toInt() + 15
+                        last().first.toEpochDay() - first().first.toEpochDay()
+                    }.toInt() + 16
 
                     Box(
                         Modifier.onGloballyPositioned {
@@ -111,15 +111,15 @@ fun Ui(viewModel: RateInfoViewModel) {
                             LinePlot(
                                 listOf(
                                     LinePlot.Line(
+                                        viewModel.prediction.toLine(),
+                                        LinePlot.Connection(Color.Red),
+                                        LinePlot.Intersection(Color.Red)
+                                    ),
+                                    LinePlot.Line(
                                         viewModel.history.toLine(),
                                         LinePlot.Connection(Color.Green),
                                         LinePlot.Intersection(Color.Green),
                                         areaUnderLine = LinePlot.AreaUnderLine(Color.Green, .1f)
-                                    ),
-                                    LinePlot.Line(
-                                        viewModel.prediction.toLine(),
-                                        LinePlot.Connection(Color.Red),
-                                        LinePlot.Intersection(Color.Red)
                                     )
                                 ),
                                 LinePlot.Grid(Color.LightGray),
@@ -170,10 +170,12 @@ fun Ui(viewModel: RateInfoViewModel) {
 
                                 viewModel.apply {
                                     if (prediction.isNotEmpty() && prediction[0].first < date) {
-                                        Text("Predicted rate: ${prediction.find { it.first == date }?.second}")
+                                        Text("Predicted rate: ${prediction.find { 
+                                            it.first == date
+                                        }!!.second.format(1)}")
                                     } else {
                                         history.find { it.first == date }?.let {
-                                            Text("Been rate: ${it.second}")
+                                            Text("Been rate: ${it.second.format(1)}")
                                         }
                                     }
                                 }
@@ -197,3 +199,5 @@ fun Ui(viewModel: RateInfoViewModel) {
 private fun History.toLine() = map { (date, rate) ->
     DataPoint(date.toEpochDay().toFloat(), rate.toFloat())
 }
+
+private fun Double.format(digits: Int) = "%.${digits}f".format(this)

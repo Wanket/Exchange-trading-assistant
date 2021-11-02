@@ -13,7 +13,6 @@ import ru.wanket.exchange_trading_assistant.entity.data.RateType
 import ru.wanket.exchange_trading_assistant.repository.FavoritesRepository
 import java.time.LocalDate
 import javax.inject.Inject
-import kotlin.properties.ObservableProperty
 
 @HiltViewModel
 class FavoriteSettingsViewModel @Inject constructor(

@@ -76,7 +76,7 @@ dependencies {
     implementation("io.github.vanpra.compose-material-dialogs:core:0.6.1")
     implementation("io.github.vanpra.compose-material-dialogs:datetime:0.6.1")
 
-    implementation("com.github.madrapps:plot:0.1.1")
+    implementation("com.github.madrapps:plot:0.1.2")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
 
@@ -84,6 +84,10 @@ dependencies {
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
+
+    implementation("com.github.Workday:timeseries-forecast:9a22eaa0a2") {
+        exclude("junit", "junit")
+    }
 }
 
 kapt {
