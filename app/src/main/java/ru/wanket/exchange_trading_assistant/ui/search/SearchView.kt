@@ -18,7 +18,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import ru.wanket.exchange_trading_assistant.ui.theme.ExchangeTradingAssistantTheme
 import ru.wanket.exchange_trading_assistant.ui.widgets.RateBaseInfoView
-import ru.wanket.exchange_trading_assistant.view_models.SearchViewModel
+import ru.wanket.exchange_trading_assistant.view_model.SearchViewModel
 
 @Composable
 fun Ui(viewModel: SearchViewModel) {

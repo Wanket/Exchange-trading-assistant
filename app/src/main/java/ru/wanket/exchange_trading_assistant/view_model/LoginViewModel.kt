@@ -1,4 +1,4 @@
-package ru.wanket.exchange_trading_assistant.view_models
+package ru.wanket.exchange_trading_assistant.view_model
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

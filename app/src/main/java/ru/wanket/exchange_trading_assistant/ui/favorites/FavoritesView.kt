@@ -20,7 +20,7 @@ import ru.wanket.exchange_trading_assistant.ui.theme.ExchangeTradingAssistantThe
 import ru.wanket.exchange_trading_assistant.ui.widgets.EndArrangementRow
 import ru.wanket.exchange_trading_assistant.ui.widgets.RateBaseInfoView
 import ru.wanket.exchange_trading_assistant.ui.widgets.TitleBar
-import ru.wanket.exchange_trading_assistant.view_models.FavoritesViewModel
+import ru.wanket.exchange_trading_assistant.view_model.FavoritesViewModel
 
 @Composable
 fun Activity.Ui(viewModel: FavoritesViewModel) {

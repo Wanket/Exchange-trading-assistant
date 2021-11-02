@@ -39,6 +39,9 @@ interface FavoriteDao {
     @Query("SELECT * FROM Favorite")
     fun getAllFavorites(): Flow<List<Favorite>>
 
+    @Query("SELECT * FROM Favorite WHERE codeName = :codeName and type = :type")
+    suspend fun getById(codeName: String, type: RateType): Favorite
+
     @Query("SELECT EXISTS(SELECT * FROM Favorite WHERE codeName = :codeName and type = :type)")
     suspend fun exist(codeName: String, type: RateType): Boolean
 }

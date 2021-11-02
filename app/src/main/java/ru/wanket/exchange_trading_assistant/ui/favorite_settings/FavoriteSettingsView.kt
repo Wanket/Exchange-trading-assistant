@@ -13,68 +13,97 @@ import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import ru.wanket.exchange_trading_assistant.ui.theme.ExchangeTradingAssistantTheme
 import ru.wanket.exchange_trading_assistant.ui.widgets.*
-import ru.wanket.exchange_trading_assistant.view_models.FavoriteSettingsViewModel
+import ru.wanket.exchange_trading_assistant.view_model.FavoriteSettingsViewModel
+import java.time.LocalDate
 
 @Composable
 fun Ui(viewModel: FavoriteSettingsViewModel) {
     val dialogState = rememberMaterialDialogState()
 
     ExchangeTradingAssistantTheme {
-        RateTitleBar(viewModel.rate) {
+        RateTitleBar(viewModel.rateBaseInfo) {
             Column(
                 modifier = Modifier.padding(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("Enable notifications")
-
-                    EndArrangementRow {
-                        Checkbox(
-                            checked = viewModel.isEnabled,
-                            onCheckedChange = { viewModel.isEnabled = it }
-                        )
+                viewModel.apply {
+                    if (rateBaseInfo.codeName.isEmpty()) {
+                        return@Column
                     }
-                }
 
-                FilteredTextField(
-                    enabled = viewModel.isEnabled,
-                    label = { Text("Upper bound") },
-                    modifier = Modifier.fillMaxWidth(),
-                    value = viewModel.upperBound,
-                    onValueChange = { viewModel.upperBound = it },
-                    filter = ::isPositiveDoubleFilter,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("Enable notifications")
 
-                FilteredTextField(
-                    enabled = viewModel.isEnabled,
-                    label = { Text("Lower bound") },
-                    modifier = Modifier.fillMaxWidth(),
-                    value = viewModel.lowerBound,
-                    onValueChange = { viewModel.lowerBound = it },
-                    filter = ::isPositiveDoubleFilter,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
-                )
+                        EndArrangementRow {
+                            Checkbox(
+                                checked = isEnabled,
+                                onCheckedChange = {
+                                    isEnabled = it
 
-                MaterialDialog(
-                    dialogState = dialogState,
-                    buttons = {
-                        positiveButton("Ok")
-                        negativeButton("Cancel")
+                                    onSettingsChanged()
+                                }
+                            )
+                        }
                     }
-                ) {
-                    datepicker { viewModel.startTime = it }
-                }
 
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text("Start look from")
+                    FilteredTextField(
+                        enabled = isEnabled,
+                        label = { Text("Upper bound") },
+                        modifier = Modifier.fillMaxWidth(),
+                        value = upperBound,
+                        onValueChange = {
+                            upperBound = it
 
-                    EndArrangementRow {
-                        OutlinedButton(
-                            onClick = { dialogState.show() },
-                            enabled = viewModel.isEnabled
-                        ) {
-                            Text(viewModel.startTime.toString())
+                            if (it.isNotEmpty()) {
+                                onSettingsChanged()
+                            }
+                        },
+                        filter = ::isPositiveDoubleFilter,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                    )
+
+                    FilteredTextField(
+                        enabled = isEnabled,
+                        label = { Text("Lower bound") },
+                        modifier = Modifier.fillMaxWidth(),
+                        value = lowerBound,
+                        onValueChange = {
+                            lowerBound = it
+
+                            if (it.isNotEmpty()) {
+                                onSettingsChanged()
+                            }
+                        },
+                        filter = ::isPositiveDoubleFilter,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+                    )
+
+                    MaterialDialog(
+                        dialogState = dialogState,
+                        buttons = {
+                            positiveButton("Ok")
+                            negativeButton("Cancel")
+                        }
+                    ) {
+                        val year = LocalDate.now().year
+
+                        datepicker(yearRange = year - 1..year) {
+                            startTime = it
+
+                            onSettingsChanged()
+                        }
+                    }
+
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("Start look from")
+
+                        EndArrangementRow {
+                            OutlinedButton(
+                                onClick = { dialogState.show() },
+                                enabled = viewModel.isEnabled
+                            ) {
+                                Text(viewModel.startTime.toString())
+                            }
                         }
                     }
                 }

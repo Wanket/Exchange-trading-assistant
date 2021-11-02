@@ -5,7 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.fragment.app.FragmentActivity
 import dagger.hilt.android.AndroidEntryPoint
-import ru.wanket.exchange_trading_assistant.view_models.LoginViewModel
+import ru.wanket.exchange_trading_assistant.view_model.LoginViewModel
 
 @AndroidEntryPoint
 class LoginActivity : FragmentActivity() {

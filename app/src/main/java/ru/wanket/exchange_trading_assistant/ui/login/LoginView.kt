@@ -16,7 +16,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.core.text.isDigitsOnly
 import ru.wanket.exchange_trading_assistant.ui.theme.ExchangeTradingAssistantTheme
 import ru.wanket.exchange_trading_assistant.ui.widgets.FilteredTextField
-import ru.wanket.exchange_trading_assistant.view_models.LoginViewModel
+import ru.wanket.exchange_trading_assistant.view_model.LoginViewModel
 
 @Composable
 fun Ui(viewModel: LoginViewModel) {
