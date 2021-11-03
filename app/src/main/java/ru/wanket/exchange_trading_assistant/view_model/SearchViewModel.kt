@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
-import ru.wanket.exchange_trading_assistant.Navigator
+import ru.wanket.exchange_trading_assistant.navigator.ViewModelNavigator
 import ru.wanket.exchange_trading_assistant.entity.data.RateBaseInfo
 import ru.wanket.exchange_trading_assistant.repository.SearchRepository
 import javax.inject.Inject
@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchRepository: SearchRepository,
-    private val navigator: Navigator
+    private val viewModelNavigator: ViewModelNavigator
 ) : ViewModel() {
     var searchField by mutableStateOf("")
 
@@ -48,5 +48,5 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun onRateClicked(rateBaseInfo: RateBaseInfo) = navigator.navigateRateInfo(rateBaseInfo)
+    fun onRateClicked(rateBaseInfo: RateBaseInfo) = viewModelNavigator.navigateRateInfo(rateBaseInfo)
 }

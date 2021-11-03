@@ -15,7 +15,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ru.wanket.exchange_trading_assistant.Navigator
+import ru.wanket.exchange_trading_assistant.navigator.ViewModelNavigator
 import ru.wanket.exchange_trading_assistant.ui.theme.ExchangeTradingAssistantTheme
 import ru.wanket.exchange_trading_assistant.ui.widgets.EndArrangementRow
 import ru.wanket.exchange_trading_assistant.ui.widgets.RateBaseInfoView
@@ -27,7 +27,7 @@ fun Activity.Ui(viewModel: FavoritesViewModel) {
     val favoritesState = viewModel.favorites.collectAsState(listOf())
 
     ExchangeTradingAssistantTheme {
-        TitleBar(Navigator(this)) {
+        TitleBar(ViewModelNavigator(this)) {
             Column(
                 modifier = Modifier
                     .fillMaxHeight()

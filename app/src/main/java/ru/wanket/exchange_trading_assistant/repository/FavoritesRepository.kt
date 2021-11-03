@@ -46,4 +46,6 @@ class FavoritesRepository @Inject constructor(dataBase: DataBase) {
             FavoriteSettings(useNotifications, upperBound, lowerBound, startLookFrom)
         }
     }
+
+    suspend fun getActiveNotificationsFavorites() = favoriteDao.getActiveNotificationsFavorites()
 }

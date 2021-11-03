@@ -6,13 +6,13 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ru.wanket.exchange_trading_assistant.entity.Settings
-import ru.wanket.exchange_trading_assistant.Navigator
+import ru.wanket.exchange_trading_assistant.navigator.ViewModelNavigator
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val settings: Settings,
-    private val navigator: Navigator
+    private val viewModelNavigator: ViewModelNavigator
 ) : ViewModel() {
     val isLogin = settings.pinCode != null
 
@@ -38,5 +38,5 @@ class LoginViewModel @Inject constructor(
         onLoginSuccess()
     }
 
-    private fun onLoginSuccess() = navigator.navigateFavorites()
+    private fun onLoginSuccess() = viewModelNavigator.navigateFavorites()
 }

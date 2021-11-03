@@ -30,7 +30,7 @@ interface FavoriteDao {
     @Insert
     suspend fun insert(favorite: Favorite)
 
-    @Query("DELETE FROM Favorite WHERE codeName = :codeName and type = :type")
+    @Query("DELETE FROM Favorite WHERE codeName = :codeName AND type = :type")
     suspend fun deleteById(codeName: String, type: RateType)
 
     @Update
@@ -39,11 +39,14 @@ interface FavoriteDao {
     @Query("SELECT * FROM Favorite")
     fun getAllFavorites(): Flow<List<Favorite>>
 
-    @Query("SELECT * FROM Favorite WHERE codeName = :codeName and type = :type")
+    @Query("SELECT * FROM Favorite WHERE codeName = :codeName AND type = :type")
     suspend fun getById(codeName: String, type: RateType): Favorite
 
-    @Query("SELECT EXISTS(SELECT * FROM Favorite WHERE codeName = :codeName and type = :type)")
+    @Query("SELECT EXISTS(SELECT * FROM Favorite WHERE codeName = :codeName AND type = :type)")
     suspend fun exist(codeName: String, type: RateType): Boolean
+
+    @Query("SELECT * FROM Favorite WHERE useNotifications = 1")
+    suspend fun getActiveNotificationsFavorites(): List<Favorite>
 }
 
 class FavoriteConverter {

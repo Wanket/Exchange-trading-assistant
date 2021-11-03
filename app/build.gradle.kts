@@ -58,6 +58,9 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.39.1")
     kapt("com.google.dagger:hilt-android-compiler:2.39.1")
 
+    implementation("androidx.hilt:hilt-work:1.0.0")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0-rc01")
     implementation("androidx.compose.ui:ui:1.0.4")
     implementation("androidx.compose.material:material:1.0.4")
@@ -88,6 +91,8 @@ dependencies {
     implementation("com.github.Workday:timeseries-forecast:9a22eaa0a2") {
         exclude("junit", "junit")
     }
+
+    implementation("androidx.work:work-runtime-ktx:2.7.0")
 }
 
 kapt {

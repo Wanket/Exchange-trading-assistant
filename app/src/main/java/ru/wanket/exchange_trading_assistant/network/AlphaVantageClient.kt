@@ -29,6 +29,11 @@ class AlphaVantageClient(private val apiKey: String) {
     suspend fun rateCompany(companyName: String) = client.rateCompany(companyName, apiKey)
 
     suspend fun rateCrypto(cryptoName: String) = client.rateCrypto(cryptoName, apiKey)
+
+    suspend fun rateCompanyMonthly(companyName: String) =
+        client.rateCompanyMonthly(companyName, apiKey)
+
+    suspend fun rateCryptoMonthly(cryptoName: String) = client.rateCryptoMonthly(cryptoName, apiKey)
 }
 
 @Module

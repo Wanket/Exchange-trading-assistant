@@ -7,10 +7,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import ru.wanket.exchange_trading_assistant.Navigator
+import ru.wanket.exchange_trading_assistant.navigator.ViewModelNavigator
 
 @Composable
-fun Activity.TitleBar(navigator: Navigator, content: @Composable (PaddingValues) -> Unit) =
+fun Activity.TitleBar(viewModelNavigator: ViewModelNavigator, content: @Composable (PaddingValues) -> Unit) =
     Scaffold(
         topBar = {
             TopAppBar(
@@ -25,7 +25,7 @@ fun Activity.TitleBar(navigator: Navigator, content: @Composable (PaddingValues)
                     )
                 },
                 actions = {
-                    IconButton(onClick = { navigator.navigateSearch() }) {
+                    IconButton(onClick = { viewModelNavigator.navigateSearch() }) {
                         Icon(Icons.Default.Search, contentDescription = null)
                     }
                 }

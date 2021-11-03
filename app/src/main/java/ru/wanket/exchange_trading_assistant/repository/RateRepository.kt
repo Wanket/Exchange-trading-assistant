@@ -3,6 +3,7 @@ package ru.wanket.exchange_trading_assistant.repository
 import ru.wanket.exchange_trading_assistant.entity.CryptoInfoLoader
 import ru.wanket.exchange_trading_assistant.entity.data.Company
 import ru.wanket.exchange_trading_assistant.entity.data.Crypto
+import ru.wanket.exchange_trading_assistant.entity.data.GeneralFullRate
 import ru.wanket.exchange_trading_assistant.network.AlphaVantageClient
 import java.time.LocalDate
 import javax.inject.Inject
@@ -19,6 +20,15 @@ class RateRepository @Inject constructor(
     suspend fun getCryptoHistory(codeName: String) = client.rateCrypto(codeName).days.map {
         LocalDate.parse(it.key) to it.value.value
     }
+
+    suspend fun getCryptoHistoryFull(codeName: String) = client.rateCrypto(codeName).days.map {
+        LocalDate.parse(it.key) to it.value.run { GeneralFullRate(high, low, value) }
+    }
+
+    suspend fun getCryptoHistoryMonthlyFull(codeName: String) =
+        client.rateCryptoMonthly(codeName).days.map {
+            LocalDate.parse(it.key) to it.value.run { GeneralFullRate(high, low, value) }
+        }
 
     suspend fun getFullCompanyInfo(codeName: String) = client.companyInfo(codeName).run {
         Company(
@@ -38,4 +48,13 @@ class RateRepository @Inject constructor(
     suspend fun getCompanyHistory(codeName: String) = client.rateCompany(codeName).days.map {
         LocalDate.parse(it.key) to it.value.value
     }
+
+    suspend fun getCompanyHistoryFull(codeName: String) = client.rateCompany(codeName).days.map {
+        LocalDate.parse(it.key) to it.value.run { GeneralFullRate(high, low, value) }
+    }
+
+    suspend fun getCompanyHistoryMonthlyFull(codeName: String) =
+        client.rateCompanyMonthly(codeName).days.map {
+            LocalDate.parse(it.key) to it.value.run { GeneralFullRate(high, low, value) }
+        }
 }

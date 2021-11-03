@@ -54,9 +54,7 @@ fun Ui(viewModel: FavoriteSettingsViewModel) {
                         onValueChange = {
                             upperBound = it
 
-                            if (it.isNotEmpty()) {
-                                onSettingsChanged()
-                            }
+                            onSettingsChanged()
                         },
                         filter = ::isPositiveDoubleFilter,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
@@ -70,9 +68,7 @@ fun Ui(viewModel: FavoriteSettingsViewModel) {
                         onValueChange = {
                             lowerBound = it
 
-                            if (it.isNotEmpty()) {
-                                onSettingsChanged()
-                            }
+                            onSettingsChanged()
                         },
                         filter = ::isPositiveDoubleFilter,
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)

@@ -34,17 +34,27 @@ class FavoriteSettingsViewModel @Inject constructor(
     var startTime: LocalDate by mutableStateOf(LocalDate.now())
 
     fun onSettingsChanged() = viewModelScope.launch {
+        var (lower, upper) = listOf(lowerBound, upperBound)
+            .map { it.ifEmpty { "0" } }
+            .map { it.toDouble() }
+
+        if (lower > upper) {
+            lowerBound = upperBound
+
+            lower = upper
+        }
+
         favoritesRepository.updateFavorite(
             rateBaseInfo,
-            FavoriteSettings(isEnabled, upperBound.toDouble(), lowerBound.toDouble(), startTime)
+            FavoriteSettings(isEnabled, upper, lower, startTime)
         )
     }
 
     private fun reloadSettings() = viewModelScope.launch {
         favoritesRepository.getFavoriteSettings(rateBaseInfo).let { newSettings ->
             isEnabled = newSettings.isEnabled
-            upperBound = newSettings.upperBound.toString()
-            lowerBound = newSettings.lowerBound.toString()
+            upperBound = newSettings.upperBound.run { if (this == .0) "" else toString() }
+            lowerBound = newSettings.lowerBound.run { if (this == .0) "" else toString() }
             startTime = newSettings.startDate
         }
     }
